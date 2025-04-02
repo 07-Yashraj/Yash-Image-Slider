@@ -3,41 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Professional Image Slider</title>
+    <title>Modern Rectangle Image Slider</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="flex flex-col justify-center items-center h-screen bg-gradient-to-r from-gray-800 to-gray-900 text-white font-sans">
-    <h1 class="text-3xl font-bold mb-6">Interactive Image Slider</h1>
-    <div class="relative w-4/5 max-w-2xl overflow-hidden rounded-lg shadow-lg bg-white">
-        <div class="flex transition-transform duration-500 ease-in-out" id="slider">
-            <img src="istockphoto-1252711563-612x612.jpg" alt="Image 1" class="w-full h-96 object-cover rounded-lg transition-transform duration-300 hover:scale-105">
-            <img src="360_F_323217380_fIFSiSjFUfDnsUYDPDSAjTxoW48k8VLd.jpg" alt="Image 2" class="w-full h-96 object-cover rounded-lg transition-transform duration-300 hover:scale-105">
-            <img src="istockphoto-516017101-612x612.jpg" alt="Image 3" class="w-full h-96 object-cover rounded-lg transition-transform duration-300 hover:scale-105">
+<body class="flex flex-col justify-center items-center h-screen bg-gray-900 text-white font-sans">
+    <h1 class="text-3xl font-bold mb-6">Rectangle Image Slider</h1>
+    <div class="relative w-4/5 max-w-2xl overflow-hidden rounded-lg shadow-lg">
+        <div class="relative flex transition-transform duration-500 ease-in-out" id="slider">
+            <img src="istockphoto-1252711563-612x612.jpg" class="w-full h-96 object-cover" id="slide1">
+            <img src="360_F_323217380_fIFSiSjFUfDnsUYDPDSAjTxoW48k8VLd.jpg" class="w-full h-96 object-cover" id="slide2">
+            <img src="istockphoto-516017101-612x612.jpg" class="w-full h-96 object-cover" id="slide3">
+            <img src="download (1).jpg" class="w-full h-96 object-cover" id="slide4">
+            <img src="download (2).jpg" class="w-full h-96 object-cover" id="slide5">
         </div>
-        <div class="absolute bottom-4 w-full text-center bg-gray-800 bg-opacity-75 py-2 text-lg font-semibold transition-opacity duration-300 hover:opacity-100" id="image-description">
+        <div class="absolute bottom-4 w-full text-center bg-black bg-opacity-75 py-2 text-lg font-semibold" id="image-description">
             Beautiful View of Nature
         </div>
         <div class="absolute top-1/2 left-0 right-0 flex justify-between px-4 transform -translate-y-1/2">
-            <button onclick="prevSlide()" class="bg-white bg-opacity-50 hover:bg-opacity-100 text-gray-800 p-3 rounded-full text-2xl transition-transform duration-300 hover:scale-110">&#10094;</button>
-            <button onclick="nextSlide()" class="bg-white bg-opacity-50 hover:bg-opacity-100 text-gray-800 p-3 rounded-full text-2xl transition-transform duration-300 hover:scale-110">&#10095;</button>
+            <button onclick="prevSlide()" class="bg-black bg-opacity-50 hover:bg-opacity-100 text-white p-3 rounded-full text-2xl">&#10094;</button>
+            <button onclick="nextSlide()" class="bg-black bg-opacity-50 hover:bg-opacity-100 text-white p-3 rounded-full text-2xl">&#10095;</button>
         </div>
     </div>
-    <div class="flex justify-center mt-4">
-        <img src="istockphoto-1252711563-612x612.jpg" onclick="selectSlide(0)" class="w-16 h-16 m-2 rounded-lg opacity-75 hover:opacity-100 border-2 border-transparent hover:border-yellow-400 cursor-pointer transition-transform duration-300 hover:scale-110">
-        <img src="360_F_323217380_fIFSiSjFUfDnsUYDPDSAjTxoW48k8VLd.jpg" onclick="selectSlide(1)" class="w-16 h-16 m-2 rounded-lg opacity-75 hover:opacity-100 border-2 border-transparent hover:border-yellow-400 cursor-pointer transition-transform duration-300 hover:scale-110">
-        <img src="istockphoto-516017101-612x612.jpg" onclick="selectSlide(2)" class="w-16 h-16 m-2 rounded-lg opacity-75 hover:opacity-100 border-2 border-transparent hover:border-yellow-400 cursor-pointer transition-transform duration-300 hover:scale-110">
+    <div class="flex justify-center mt-4 space-x-3">
+        <img src="istockphoto-1252711563-612x612.jpg" onclick="selectSlide(0)" class="thumbnail">
+        <img src="360_F_323217380_fIFSiSjFUfDnsUYDPDSAjTxoW48k8VLd.jpg" onclick="selectSlide(1)" class="thumbnail">
+        <img src="istockphoto-516017101-612x612.jpg" onclick="selectSlide(2)" class="thumbnail">
+        <img src="download (1).jpg" onclick="selectSlide(3)" class="thumbnail">
+        <img src="download (2).jpg" onclick="selectSlide(4)" class="thumbnail">
     </div>
     <script>
         let currentIndex = 0;
         const slider = document.getElementById("slider");
         const images = document.querySelectorAll("#slider img");
-        const thumbnails = document.querySelectorAll(".mt-4 img");
-        const descriptions = ["Beautiful View of Nature", "Serene Lake at Sunset", "Majestic Mountain Peaks"];
+        const descriptions = [
+            "Beautiful View of Nature",
+            "Serene Lake at Sunset",
+            "Majestic Mountain Peaks",
+            "Ocean View",
+            "Waterfall"
+        ];
         const descriptionText = document.getElementById("image-description");
 
         function updateSlider() {
             slider.style.transform = `translateX(-${currentIndex * 100}%)`;
-            thumbnails.forEach((thumb, index) => thumb.classList.toggle("border-yellow-400", index === currentIndex));
             descriptionText.textContent = descriptions[currentIndex];
         }
 
@@ -56,7 +64,21 @@
             updateSlider();
         }
 
-        setInterval(nextSlide, 4000); 
+        setInterval(nextSlide, 4000);
     </script>
+    <style>
+        .thumbnail {
+            width: 4rem;
+            height: 4rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: transform 0.3s, opacity 0.3s;
+            opacity: 0.75;
+        }
+        .thumbnail:hover {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+    </style>
 </body>
 </html>
